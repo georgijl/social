@@ -1,0 +1,35 @@
+.friend-profile {
+  align-items: center;
+  color: #000000;
+  display: flex;
+  border-radius: 10px;
+  gap: 5px;
+  background-color: rgb(226, 225, 225);
+  padding: 5px 25px;
+  margin-bottom: 10px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: rgb(160, 160, 160);
+    transition: 0.2s linear;
+
+    .friend-profile__names {
+      color: white;
+      font-size: 18px;
+      transition: 0.2s linear;
+    }
+
+    .friend-profile__picture {
+      height: 60px;
+      width: 60px;
+      transition: 0.2s linear;
+    }
+  }
+
+  &__picture {
+    border-radius: 50%;
+    height: 50px;
+    margin-right: 10px;
+    width: 50px;
+  }
+}

@@ -1,0 +1,13 @@
+.reactions {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+
+  &__count {
+    font-size: 13px;
+  }
+
+  &__images {
+    cursor: pointer;
+  }
+}

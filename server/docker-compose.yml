@@ -1,0 +1,27 @@
+version: "3.7"
+
+services: 
+  db:
+    image: postgres:14.4
+    environment: 
+      POSTGRES_PASSWORD: tut
+      POSTGRES_USER: gosho
+      POSTGRES_DB: sasho
+    volumes: 
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 6666:5432
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=georgijl@abv.bg
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - '5555:80'
+    restart: always
+    volumes:
+      - pgadmin:/root/.pgadmin
+volumes:
+  db-data:
+  pgadmin:

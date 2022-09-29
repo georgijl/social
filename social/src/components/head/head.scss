@@ -1,0 +1,15 @@
+.head {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  &__feed {
+    flex: 4;
+    max-width: 840px;
+  }
+
+  &__logo {
+    height: 22px;
+    width: 25px;
+  }
+}
