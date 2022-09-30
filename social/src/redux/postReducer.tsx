@@ -5,13 +5,15 @@ export const postReducer = createSlice({
   initialState: {
     clicked: false,
     feelings: "",
+    login: "",
   },
   reducers: {
     feelings: (state, action) => ({ ...state, feelings: action.payload }),
     fetched: (state, action) => ({ ...state, clicked: action.payload }),
+    login: (state, action) => ({ ...state, login: action.payload }),
   },
 });
 
-export const { feelings, fetched } = postReducer.actions;
+export const { feelings, fetched, login } = postReducer.actions;
 
 export default postReducer.reducer;

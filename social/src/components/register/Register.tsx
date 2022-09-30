@@ -1,19 +1,24 @@
 import { FC, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { FormikInterface, UserState } from "../interfaces/interfaces";
+import {
+  FormikInterface,
+  PostReducer,
+  UserState,
+} from "../interfaces/interfaces";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { validationSchema } from "./ValidationSchema";
-import { login, userId } from "../../redux/userReducer";
+import { userId } from "../../redux/userReducer";
 import { getUser } from "../../utils/getUser";
+import { login } from "../../redux/postReducer";
 
 interface MockData {
   existingError?: string;
 }
 
 const Register: FC<MockData> = ({ existingError }) => {
-  const loginError = useSelector((state: UserState) => state.userInfo.login);
+  const loginError = useSelector((state: PostReducer) => state.post.login);
   const userInfo = useSelector((state: UserState) => state.userInfo.userId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -157,12 +162,15 @@ const Register: FC<MockData> = ({ existingError }) => {
               Register
             </button>
             {existingError && (
-              <div className="login__error" data-testid="login-error">
-                {" "}
+              <div className="login__error" data-testid="login__error">
                 {existingError}
               </div>
             )}
-            {loginError && <p className="login__error">{loginError}</p>}
+            {loginError && (
+              <p className="login__error" data-testid="login__error-validation">
+                {loginError}
+              </p>
+            )}
           </form>
         </div>
       </div>

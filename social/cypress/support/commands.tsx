@@ -31,7 +31,7 @@ declare namespace Cypress {
 }
 
 Cypress.Commands.add("login", () => {
-  cy.get('[data-testid="email"]').type("t@abv.bg");
+  cy.get('[data-testid="email"]').type("oho@abv.bg");
   cy.get('[data-testid="password"]').type("123456789Mm");
   cy.get('[data-testid="submit-btn"]').click();
 });

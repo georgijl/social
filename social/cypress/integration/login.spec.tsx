@@ -21,7 +21,7 @@ describe("Tests the login validations", () => {
 
   it("should display error message on validation of the wrong type of email", () => {
     cy.get('[data-testid="email"]').type("a.bg");
-    cy.get('[data-testid="password"]').type("95042591002017Mm");
+    cy.get('[data-testid="password"]').type("123456789Mm");
     cy.get('[data-testid="submit-btn"]').click();
 
     cy.get('[data-testid="login__error"]').should(
@@ -41,7 +41,7 @@ describe("Tests the login validations", () => {
   });
 
   it("should loggin in success with the correct credentials", () => {
-    cy.get('[data-testid="email"]').type("t@abv.bg");
+    cy.get('[data-testid="email"]').type("oho@abv.bg");
     cy.get('[data-testid="password"]').type("123456789Mm");
     cy.get('[data-testid="submit-btn"]').click();
 

@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import "./login.scss";
-import { FormigLoginInterface, UserState } from "../interfaces/interfaces";
+import { FormigLoginInterface, PostReducer } from "../interfaces/interfaces";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login, userId } from "../../redux/userReducer";
+import { userId } from "../../redux/userReducer";
 import { getUser } from "../../utils/getUser";
+import { login } from "../../redux/postReducer";
 
 interface MockData {
   emailErrorMsg?: string;
@@ -20,7 +21,7 @@ const Login: FC<MockData> = ({
   passwordErrorMsg,
   mockError,
 }) => {
-  const loginError = useSelector((state: UserState) => state.userInfo.login);
+  const loginError = useSelector((state: PostReducer) => state.post.login);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -123,7 +124,11 @@ const Login: FC<MockData> = ({
                 {mockError}
               </p>
             )}
-            {loginError && <p className="login__error">{loginError}</p>}
+            {loginError && (
+              <p className="login__error" data-testid="login__error">
+                {loginError}
+              </p>
+            )}
           </form>
         </div>
       </div>

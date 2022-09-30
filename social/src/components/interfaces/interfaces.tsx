@@ -165,3 +165,9 @@ export interface UserToFollow {
   picture: string;
   cover: string;
 }
+
+export interface PostReducer {
+  post: {
+    login?: string;
+  };
+}

@@ -20,7 +20,6 @@ jest.mock("../../redux/userReducer", () => ({
   userId: () => mockUserId,
 }));
 
-const data = "Invalid email or password";
 const dataExist = "This email georgijl@abv.bg is already taken";
 
 const credentials = {
@@ -33,7 +32,7 @@ const credentials = {
 
 describe("<Register />", () => {
   const setup = () => {
-    mockSelector.mockReturnValue(data);
+    mockSelector.mockReturnValue(dataExist);
     return {
       user: userEvent.setup(),
       ...render(<Register existingError={dataExist} />, {
@@ -42,17 +41,8 @@ describe("<Register />", () => {
     };
   };
 
-  test("wrong credentials", async () => {
-    const { user } = setup();
-    const registerButton = screen.getByTestId("submit-btn");
-    await user.click(registerButton);
-    const userErr = screen.queryByTestId("login-error");
-    expect(mockSelector.mock.results[0].value).toEqual(userErr?.textContent);
-  });
-
   test("Already existing account", async () => {
     const { user } = setup();
-    mockSelector.mockReturnValue(dataExist);
 
     const username = screen.getByTestId("userName");
     const name = screen.getByTestId("firstName");
@@ -68,7 +58,11 @@ describe("<Register />", () => {
 
     const registerButton = screen.getByTestId("submit-btn");
     await user.click(registerButton);
-    const userErr = screen.queryByTestId("login-error");
-    expect(mockSelector.mock.results[0].value).toEqual(userErr?.textContent);
+    const userErr = screen.getByTestId("login__error");
+
+    console.log(userErr?.textContent, mockSelector.mock.results[0].value);
+    expect(`${mockSelector.mock.results[0].value}`).toEqual(
+      userErr.textContent
+    );
   });
 });

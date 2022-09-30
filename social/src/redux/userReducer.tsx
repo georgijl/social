@@ -17,7 +17,6 @@ export const userReducer = createSlice({
   initialState,
   reducers: {
     userId: (state, action) => ({ ...state, userId: action.payload }),
-    login: (state, action) => ({ ...state, login: action.payload }),
     followed: (state, action) => ({ ...state, followed: action.payload }),
     allFollowed: (state, action) => ({ ...state, allFollowed: action.payload }),
     isOwner: (state, action) => ({ ...state, isOwner: action.payload }),
@@ -39,7 +38,6 @@ export const {
   friendId,
   userDataInfo,
   userFriendInfo,
-  login,
   suggestedId,
   followed,
   allFollowed,
