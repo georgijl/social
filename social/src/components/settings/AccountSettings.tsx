@@ -2,15 +2,17 @@ import { FC, useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ExitToApp } from "@material-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
-import { UserDataInfo } from "../interfaces/interfaces";
+import { UserDataInfo, UserState } from "../interfaces/interfaces";
 import "./accountSettings.scss";
 import { useClickOutside } from "../../utils/Toggle";
 import { isOwner, userId } from "../../redux/userReducer";
 
 const AccountSettings: FC = () => {
-  const user = useSelector(
+  const userName = useSelector(
     (state: UserDataInfo) => state.userInfo.userDataInfo
   );
+
+  const user = useSelector((state: UserState) => state.userInfo.userId);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -37,8 +39,8 @@ const AccountSettings: FC = () => {
         className="account__img"
         data-testid="account"
         src={
-          user.picture
-            ? require(`../../../../social/src/images/${user.picture}`)
+          userName.picture
+            ? require(`../../../../social/src/images/${userName.picture}`)
             : require("../../images/noAvatar.png")
         }
         alt="personImg"
@@ -53,7 +55,7 @@ const AccountSettings: FC = () => {
           <Link
             className="account__dropdown-anchor"
             data-testid="account__dropdown-anchor"
-            to={`/profile/${user.username}`}
+            to={`/profile/${user}`}
           >
             <div
               className="account__dropdown-info"
@@ -62,14 +64,14 @@ const AccountSettings: FC = () => {
               <img
                 className="account__img"
                 src={
-                  user.picture
-                    ? require(`../../../../social/src/images/${user.picture}`)
+                  userName.picture
+                    ? require(`../../../../social/src/images/${userName.picture}`)
                     : require("../../images/noAvatar.png")
                 }
                 alt="personImg"
               />
-              <p>{user.first_name}</p>
-              <p>{user.last_name}</p>
+              <p>{userName.first_name}</p>
+              <p>{userName.last_name}</p>
             </div>
           </Link>
           <div

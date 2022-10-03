@@ -1,7 +1,6 @@
 .feed {
-  max-height: 100vh;
   max-width: 840px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
 
   &__wrapper {
     &:not(:last-child) {

@@ -1,40 +1,36 @@
 import { FC, useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import { userDataSuggestions } from "../../redux/notStoredUserReducer";
-import { suggestedId, isOwner, friendId } from "../../redux/userReducer";
+import { isOwner, friendId, followed } from "../../redux/userReducer";
 import { getUserInfo } from "../../utils/getUserInfo";
-import { FriendsListMaped, UserState } from "../interfaces/interfaces";
+import { FriendsListMaped } from "../interfaces/interfaces";
 import "./friendProfile.scss";
 
 const FriendProfile: FC<FriendsListMaped> = ({ friend }) => {
+  const { profileId } = useParams();
   const dispatch = useDispatch();
-  const userId = useSelector((state: UserState) => state.userInfo.suggestedId);
 
   const getUserinfoData = useCallback(async () => {
-    const data = await getUserInfo(userId, "/user/");
+    if (!profileId) return;
+    const data = await getUserInfo(profileId, "/user/");
 
     if (data) dispatch(userDataSuggestions(data));
-  }, [dispatch, userId]);
-
-  const handleUserId = useCallback(() => {
-    if (userId) dispatch(suggestedId(userId));
-  }, [dispatch, userId]);
+  }, [dispatch, profileId]);
 
   const handleActions = useCallback(() => {
-    dispatch(suggestedId(friend.id));
     dispatch(isOwner(false));
     dispatch(friendId(friend.id));
+    dispatch(followed(true));
   }, [dispatch, friend.id]);
 
   useEffect(() => {
-    handleUserId();
     getUserinfoData();
-  }, [handleUserId, getUserinfoData]);
+  }, [getUserinfoData]);
 
   return (
     <Link
-      to={`/profile/friend/${friend.username}`}
+      to={`/profile/${friend.id}`}
       onClick={handleActions}
       className="friend-profile"
     >

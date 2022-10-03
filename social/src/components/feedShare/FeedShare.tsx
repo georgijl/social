@@ -41,7 +41,6 @@ const FeedShare: FC = () => {
           console.log(error);
         }
       }
-      dispatch(fetched(true));
 
       try {
         await axios.post(`/post/${userId}`, newPost);
@@ -50,6 +49,7 @@ const FeedShare: FC = () => {
       }
       setFile(null);
       setPostInfo("");
+      dispatch(fetched(true));
     },
     [chosenEmoji, dispatch, file, postInfo, userId]
   );

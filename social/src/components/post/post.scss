@@ -1,6 +1,14 @@
 .post {
   position: relative;
 
+  .share__wrapper-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+
   &__head {
     align-items: flex-start;
     display: flex;
@@ -50,7 +58,6 @@
   }
 
   &__head-user {
-    align-items: center;
     display: flex;
     margin-bottom: 20px;
   }

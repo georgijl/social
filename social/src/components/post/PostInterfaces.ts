@@ -72,3 +72,33 @@ export interface Comment {
   userId: string;
   isYours: boolean;
 }
+
+export interface PostInfo {
+  posts: {
+    post: Attributes;
+  };
+  postsId: string;
+  id: string;
+  description: string;
+  image: string;
+  username: string;
+  picture: string;
+  userImg: string;
+  createdAt: string;
+  feeling: string;
+  likes: number;
+}
+export interface PostInfoMapped {
+  post: {
+    postsId: string;
+    id: string;
+    description: string;
+    image: string;
+    username: string;
+    picture: string;
+    userImg: string;
+    createdAt: string;
+    feeling: string;
+    likes: number;
+  };
+}

@@ -3,13 +3,13 @@ import { UsersInfo } from "../usersInterfaces";
 import "../users.scss";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { isOwner, suggestedId } from "../../../redux/userReducer";
+import { followed, isOwner } from "../../../redux/userReducer";
 
 const UserDetails: FC<UsersInfo> = ({ user }) => {
   const dispatch = useDispatch();
 
   const handleEvents = () => {
-    if (user?.id) dispatch(suggestedId(user.id));
+    dispatch(followed(false));
     dispatch(isOwner(false));
   };
 
@@ -17,7 +17,7 @@ const UserDetails: FC<UsersInfo> = ({ user }) => {
     <div className="user-details">
       {user ? (
         <Link
-          to={`/profile/suggested`}
+          to={`/profile/${user.id}`}
           className="user-details__wrapper"
           onClick={handleEvents}
         >

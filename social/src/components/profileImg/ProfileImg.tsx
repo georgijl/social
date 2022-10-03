@@ -1,31 +1,14 @@
 import { EditOutlined } from "@material-ui/icons";
 import axios from "axios";
 import { ChangeEvent, FC, useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { userDataInfo } from "../../redux/userReducer";
-import {
-  UserDataInfo,
-  UserState,
-  userSuggestions,
-} from "../interfaces/interfaces";
+import { useSelector } from "react-redux";
+import { UserState } from "../interfaces/interfaces";
+import { Files, Picture } from "./profileImgInterfaces";
 
-interface Files {
-  files: any | undefined;
-}
-interface IsUser {
-  user: boolean;
-}
-
-const ProfileImg: FC<IsUser> = ({ user }) => {
-  const dispatch = useDispatch();
+const ProfileImg: FC<Picture> = ({ picture }) => {
   const [file, setFile] = useState<Files>();
   const userId = useSelector((state: UserState) => state.userInfo.userId);
-  const profile = useSelector(
-    (state: UserDataInfo) => state.userInfo.userDataInfo.picture
-  );
-  const profileSuggested = useSelector(
-    (state: userSuggestions) => state.userData.userDataInfo
-  );
+
   const isOwn = useSelector((state: UserState) => state.userInfo.isOwner);
 
   const handleProfileImg = useCallback(async () => {
@@ -37,17 +20,8 @@ const ProfileImg: FC<IsUser> = ({ user }) => {
     data.append("file", file.files);
 
     await axios.post("/upload", data);
-    try {
-      await axios.put(`/user/profile/${userId}`, { fileName });
-      dispatch(
-        userDataInfo({
-          picture: fileName,
-        })
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }, [dispatch, file, userId]);
+    await axios.put(`/user/profile/${userId}`, { fileName });
+  }, [file, userId]);
 
   const handleEditPhoto = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setFile({ files: e.target.files[0] });
@@ -59,8 +33,8 @@ const ProfileImg: FC<IsUser> = ({ user }) => {
       <img
         className="profile-content__person"
         src={
-          profile
-            ? require(`../../../../social/src/images/${profile}`)
+          picture
+            ? require(`../../../../social/src/images/${picture}`)
             : require("../../images/noAvatar.png")
         }
         alt="personImg"

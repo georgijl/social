@@ -1,14 +1,18 @@
 import axios from "axios";
 import { FC, useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { UserState } from "../interfaces/interfaces";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchedFollow } from "../../redux/postReducer";
+import { PostReducer, UserState } from "../interfaces/interfaces";
 import UserDetails from "./userDetails/UserDetails";
 import { Users } from "./usersInterfaces";
 
 const YouMayKnow: FC = () => {
+  const dispatch = useDispatch();
   const userId = useSelector((state: UserState) => state.userInfo.userId);
   const [users, setUser] = useState<Users[]>();
-
+  const isHandleFollow = useSelector(
+    (state: PostReducer) => state.post.handleFetchedFollow
+  );
   const getUser = useCallback(async () => {
     const allUsers = await axios.get(`/user/followings/${userId}`);
 
@@ -17,11 +21,12 @@ const YouMayKnow: FC = () => {
     });
     const data = response.data.users;
     setUser(data);
-  }, [userId]);
+    dispatch(fetchedFollow(false));
+  }, [dispatch, userId]);
 
   useEffect(() => {
     getUser();
-  }, [getUser]);
+  }, [getUser, isHandleFollow]);
 
   return (
     <>

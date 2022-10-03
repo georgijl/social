@@ -1,9 +1,10 @@
 .share {
-  width: 98%;
   min-height: 170px;
   margin: 0 auto 50px;
   border-radius: 20px;
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  max-width: 720px;
+  width: 100%;
 
   &__wrapper-top {
     display: flex;

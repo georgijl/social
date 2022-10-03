@@ -16,6 +16,9 @@ export interface Posts {
   feeling: string;
   likes: number;
 }
+export interface PostInfoMapped {
+  id?: string;
+}
 
 export interface Followed {
   id: string;
@@ -56,11 +59,18 @@ export interface UserState {
     login?: string;
     image?: string;
     toggle?: boolean;
-    suggestedId: string;
     followed?: boolean;
     allFollowed?: string;
     isOwner?: boolean;
   };
+}
+export interface UserInfo {
+  id?: string;
+  cover_photo?: string;
+  username?: string;
+  first_name?: string;
+  last_name?: string;
+  picture?: string;
 }
 
 export interface UserInfo {
@@ -78,6 +88,7 @@ export interface UserTokenInfo {
 export interface UserDataInfo {
   userInfo: {
     userDataInfo: {
+      id?: string;
       cover_photo?: string;
       username?: string;
       first_name?: string;
@@ -169,5 +180,7 @@ export interface UserToFollow {
 export interface PostReducer {
   post: {
     login?: string;
+    isSuggested?: boolean;
+    handleFetchedFollow?: boolean;
   };
 }
