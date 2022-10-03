@@ -49,7 +49,7 @@ const FriendProfileUser: FC = () => {
           <div className="profile">
             <div className="profile-content">
               <CoverImg />
-              <ProfileImg />
+              <ProfileImg user={false} />
             </div>
             {!isOwn && (
               <Link

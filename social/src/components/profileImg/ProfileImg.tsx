@@ -3,18 +3,28 @@ import axios from "axios";
 import { ChangeEvent, FC, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userDataInfo } from "../../redux/userReducer";
-import { UserDataInfo, UserState } from "../interfaces/interfaces";
+import {
+  UserDataInfo,
+  UserState,
+  userSuggestions,
+} from "../interfaces/interfaces";
 
 interface Files {
   files: any | undefined;
 }
+interface IsUser {
+  user: boolean;
+}
 
-const ProfileImg: FC = () => {
+const ProfileImg: FC<IsUser> = ({ user }) => {
   const dispatch = useDispatch();
   const [file, setFile] = useState<Files>();
   const userId = useSelector((state: UserState) => state.userInfo.userId);
   const profile = useSelector(
     (state: UserDataInfo) => state.userInfo.userDataInfo.picture
+  );
+  const profileSuggested = useSelector(
+    (state: userSuggestions) => state.userData.userDataInfo
   );
   const isOwn = useSelector((state: UserState) => state.userInfo.isOwner);
 

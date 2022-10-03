@@ -39,7 +39,7 @@ const UserProfile: FC = () => {
           <div className="profile">
             <div className="profile-content">
               <CoverImg />
-              <ProfileImg />
+              <ProfileImg user={true} />
             </div>
             <h2 className="profile-info__name">
               {u.first_name} {u.last_name}

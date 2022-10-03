@@ -61,7 +61,7 @@ const Post: FC<Attributes> = ({ attribute }) => {
   }, [getCommentsCount]);
 
   return (
-    <div className="post">
+    <div className="post" data-testid="post">
       <div className="post__container">
         <div className="post__head">
           <div className="post__head-user">
