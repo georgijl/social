@@ -61,7 +61,8 @@ export interface UserState {
     toggle?: boolean;
     followed?: boolean;
     allFollowed?: string;
-    isOwner?: boolean;
+    isOwner: boolean;
+    isOwnPosts: boolean;
   };
 }
 export interface UserInfo {

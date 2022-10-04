@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserDataInfo, UserState } from "../interfaces/interfaces";
 import "./accountSettings.scss";
 import { useClickOutside } from "../../utils/Toggle";
-import { isOwner, userId } from "../../redux/userReducer";
+import { isOwner, isOwnPosts, userId } from "../../redux/userReducer";
 
 const AccountSettings: FC = () => {
   const userName = useSelector(
@@ -33,6 +33,11 @@ const AccountSettings: FC = () => {
     navigate("/login");
   };
 
+  const handleActions = () => {
+    dispatch(isOwner(true));
+    dispatch(isOwnPosts(true));
+  };
+
   return (
     <div className="account" ref={menuRef}>
       <img
@@ -56,11 +61,9 @@ const AccountSettings: FC = () => {
             className="account__dropdown-anchor"
             data-testid="account__dropdown-anchor"
             to={`/profile/${user}`}
+            onClick={() => handleActions}
           >
-            <div
-              className="account__dropdown-info"
-              onClick={() => dispatch(isOwner(true))}
-            >
+            <div className="account__dropdown-info">
               <img
                 className="account__img"
                 src={

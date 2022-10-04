@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import userReducer from "./userReducer";
 import postReducer from "./postReducer";
-import userDataSuggestions from "./notStoredUserReducer";
 import storage from "redux-persist/es/storage";
 
 const persistConfig = {
@@ -17,7 +16,6 @@ export const store = configureStore({
   reducer: {
     userInfo: userPrersistedReducer,
     post: postReducer,
-    userData: userDataSuggestions,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

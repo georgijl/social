@@ -1,16 +1,21 @@
 import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { isOwner } from "../../redux/userReducer";
+import { isOwner, isOwnPosts } from "../../redux/userReducer";
 import AccountSettings from "../settings/AccountSettings";
 
 const Header: FC = () => {
   const dispatch = useDispatch();
 
+  const handleActions = () => {
+    dispatch(isOwner(true));
+    dispatch(isOwnPosts(false));
+  };
+
   return (
     <>
       <div className="header">
-        <Link to={"/"} onClick={() => dispatch(isOwner(true))}>
+        <Link to={"/"} onClick={handleActions}>
           <img
             src={require("../../images/home-logo.png")}
             alt="home"

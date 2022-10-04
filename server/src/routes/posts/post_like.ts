@@ -4,7 +4,6 @@ import { Post } from "../../entity/Post";
 
 const router = express.Router();
 
-// edit post
 router.put("/api/post/like/:id", async (req: Request, res: Response) => {
   try {
     const post = await Post.findOneBy({ id: req.params.id });

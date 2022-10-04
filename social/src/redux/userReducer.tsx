@@ -7,6 +7,7 @@ const initialState = {
   followed: false,
   allFollowed: [],
   isOwner: true,
+  isOwnPosts: false,
   userDataInfo: [],
 };
 
@@ -18,6 +19,7 @@ export const userReducer = createSlice({
     followed: (state, action) => ({ ...state, followed: action.payload }),
     allFollowed: (state, action) => ({ ...state, allFollowed: action.payload }),
     isOwner: (state, action) => ({ ...state, isOwner: action.payload }),
+    isOwnPosts: (state, action) => ({ ...state, isOwnPosts: action.payload }),
     friendId: (state, action) => ({ ...state, friendId: action.payload }),
     userDataInfo: (state, action) => ({
       ...state,
@@ -33,6 +35,7 @@ export const {
   followed,
   allFollowed,
   isOwner,
+  isOwnPosts,
 } = userReducer.actions;
 
 export default userReducer.reducer;

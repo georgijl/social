@@ -27,6 +27,9 @@ const UserProfile: FC = () => {
   const { profileId } = useParams();
   const dispatch = useDispatch();
   const isOwn = useSelector((state: UserState) => state.userInfo.isOwner);
+  const isOwnPosts = useSelector(
+    (state: UserState) => state.userInfo.isOwnPosts
+  );
   const userId = useSelector((state: UserState) => state.userInfo.userId);
   const isFollowed = useSelector((state: UserState) => state.userInfo.followed);
   let u = useSelector((state: UserDataInfo) => state.userInfo.userDataInfo);
@@ -42,13 +45,13 @@ const UserProfile: FC = () => {
     if (!profileId) return;
 
     const data = await getUserInfo(profileId, "/profile/user/");
-    const dataPosts = await fetchPosts(profileId);
+    const dataPosts = await fetchPosts(profileId, isOwnPosts);
 
     if (isLoggedUser) dispatch(userDataInfo(data));
 
     setPosts(dataPosts);
     setUserInfo(data);
-  }, [dispatch, isLoggedUser, profileId]);
+  }, [dispatch, isLoggedUser, isOwnPosts, profileId]);
 
   const handleUnfollow = useCallback(async () => {
     await axios.post(`/user/unfollow/${userId}`, {

@@ -3,7 +3,7 @@ import { UsersInfo } from "../usersInterfaces";
 import "../users.scss";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { followed, isOwner } from "../../../redux/userReducer";
+import { followed, isOwner, isOwnPosts } from "../../../redux/userReducer";
 
 const UserDetails: FC<UsersInfo> = ({ user }) => {
   const dispatch = useDispatch();
@@ -11,6 +11,7 @@ const UserDetails: FC<UsersInfo> = ({ user }) => {
   const handleEvents = () => {
     dispatch(followed(false));
     dispatch(isOwner(false));
+    dispatch(isOwnPosts(false));
   };
 
   return (
