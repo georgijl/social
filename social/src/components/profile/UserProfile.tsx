@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import {
+  ButtonState,
   PostReducer,
   UserDataInfo,
   UserInfo,
@@ -20,7 +21,7 @@ import FeedShare from "../feedShare/FeedShare";
 import { fetchPosts } from "../../utils/fetchPosts";
 import { PostInfo } from "../post/PostInterfaces";
 import axios from "axios";
-import { fetchedFollow } from "../../redux/postReducer";
+import { fetched, fetchedFollow } from "../../redux/postReducer";
 
 const UserProfile: FC = () => {
   const { profileId } = useParams();
@@ -32,6 +33,7 @@ const UserProfile: FC = () => {
   const isSuggested = useSelector(
     (state: PostReducer) => state.post.isSuggested
   );
+  const isPosted = useSelector((state: ButtonState) => state.post.clicked);
 
   const [posts, setPosts] = useState<PostInfo[]>();
   const [userInfo, setUserInfo] = useState<UserInfo>();
@@ -68,7 +70,8 @@ const UserProfile: FC = () => {
 
   useEffect(() => {
     fetchUserInfo();
-  }, [dispatch, fetchUserInfo, isLoggedUser]);
+    dispatch(fetched(false));
+  }, [dispatch, fetchUserInfo, isLoggedUser, isPosted]);
 
   return (
     <>
@@ -105,7 +108,6 @@ const UserProfile: FC = () => {
             ) : (
               ""
             )}
-
             <h2 className="profile-info__name">
               {userInfo?.first_name} {userInfo?.last_name}
             </h2>
