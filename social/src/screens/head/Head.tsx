@@ -3,11 +3,15 @@ import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetched } from "../../redux/postReducer";
 import { fetchPosts } from "../../utils/fetchPosts";
-import Feed from "../feed/Feed";
-import FeedShare from "../feedShare/FeedShare";
-import Header from "../header/Header";
-import { ButtonState, PostReducer, UserState } from "../interfaces/interfaces";
-import { PostInfo } from "../post/PostInterfaces";
+import Feed from "../../components/feed/Feed";
+import FeedShare from "../../components/feedShare/FeedShare";
+import Header from "../../components/header/Header";
+import {
+  ButtonState,
+  PostReducer,
+  UserState,
+} from "../../components/interfaces/interfaces";
+import { PostInfo } from "../../components/post/PostInterfaces";
 
 import "./head.scss";
 

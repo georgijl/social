@@ -3,12 +3,12 @@ import HomePage from "./components/homePage/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
-import UserProfile from "./components/profile/UserProfile";
 import { UserState } from "./components/interfaces/interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { userDataInfo } from "./redux/userReducer";
 import { getUserInfo } from "./utils/getUserInfo";
 import "./App.css";
+import UserProfile from "./screens/profile/UserProfile";
 
 function App() {
   const dispatch = useDispatch();

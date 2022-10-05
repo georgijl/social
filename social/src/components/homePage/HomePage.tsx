@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import Head from "../head/Head";
+import Head from "../../screens/head/Head";
 import { UserState } from "../interfaces/interfaces";
 
 const HomePage: FC = () => {

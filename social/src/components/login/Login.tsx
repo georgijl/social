@@ -68,6 +68,7 @@ const Login: FC<MockData> = ({
             data-testid="login-form"
           >
             <input
+              autoComplete="false"
               placeholder="Email"
               className="login-input"
               type="email"
@@ -89,6 +90,7 @@ const Login: FC<MockData> = ({
               </div>
             )}
             <input
+              autoComplete="false"
               placeholder="Password"
               className="login-input"
               type="password"

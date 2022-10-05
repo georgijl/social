@@ -69,6 +69,7 @@ const Register: FC<MockData> = ({ existingError }) => {
             data-testid="register"
           >
             <input
+              autoComplete="false"
               placeholder="Username"
               className="login-input"
               type="text"
@@ -85,6 +86,7 @@ const Register: FC<MockData> = ({ existingError }) => {
               </div>
             )}
             <input
+              autoComplete="false"
               placeholder="First name"
               className="login-input"
               type="text"
@@ -104,6 +106,7 @@ const Register: FC<MockData> = ({ existingError }) => {
               </div>
             )}
             <input
+              autoComplete="false"
               placeholder="Last name"
               className="login-input"
               type="text"
@@ -120,6 +123,7 @@ const Register: FC<MockData> = ({ existingError }) => {
               </div>
             )}
             <input
+              autoComplete="false"
               placeholder="Email"
               className="login-input"
               type="email"
@@ -136,6 +140,7 @@ const Register: FC<MockData> = ({ existingError }) => {
               </div>
             )}
             <input
+              autoComplete="false"
               placeholder="Password"
               className="login-input"
               type="password"

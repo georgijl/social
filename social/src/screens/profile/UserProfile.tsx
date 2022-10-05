@@ -1,27 +1,28 @@
 import { FC, useCallback, useEffect, useMemo, useState } from "react";
+
+import "./userProfile.scss";
+import axios from "axios";
+import { fetched, fetchedFollow } from "../../redux/postReducer";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ButtonState,
   PostReducer,
   UserDataInfo,
   UserInfo,
   UserState,
-} from "../interfaces/interfaces";
-import "./userProfile.scss";
-import Feed from "../feed/Feed";
-import CoverImg from "../coverImg/CoverImg";
-import ProfileImg from "../profileImg/ProfileImg";
-import { Friends } from "../friends/Friends";
-import YouMayKnow from "../youMayKnow/YouMayKnow";
-import { useDispatch, useSelector } from "react-redux";
-import Header from "../header/Header";
-import { isOwner, userDataInfo } from "../../redux/userReducer";
+} from "../../components/interfaces/interfaces";
 import { getUserInfo } from "../../utils/getUserInfo";
-import { Link, useParams } from "react-router-dom";
-import FeedShare from "../feedShare/FeedShare";
 import { fetchPosts } from "../../utils/fetchPosts";
-import { PostInfo } from "../post/PostInterfaces";
-import axios from "axios";
-import { fetched, fetchedFollow } from "../../redux/postReducer";
+import { isOwner, userDataInfo } from "../../redux/userReducer";
+import { PostInfo } from "../../components/post/PostInterfaces";
+import Header from "../../components/header/Header";
+import { Friends } from "../../components/friends/Friends";
+import YouMayKnow from "../../components/youMayKnow/YouMayKnow";
+import CoverImg from "../../components/coverImg/CoverImg";
+import ProfileImg from "../../components/profileImg/ProfileImg";
+import FeedShare from "../../components/feedShare/FeedShare";
+import Feed from "../../components/feed/Feed";
 
 const UserProfile: FC = () => {
   const { profileId } = useParams();

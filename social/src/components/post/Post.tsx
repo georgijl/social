@@ -11,6 +11,7 @@ import { useClickOutside } from "../../utils/Toggle";
 import Reactions from "../reactions/Reactions";
 import { fetched } from "../../redux/postReducer";
 import { Link } from "react-router-dom";
+import { isOwner } from "../../redux/userReducer";
 
 const Post: FC<Attributes> = ({ attribute }) => {
   const isLoggedIn = useSelector((state: UserState) => state.userInfo.userId);
@@ -68,6 +69,7 @@ const Post: FC<Attributes> = ({ attribute }) => {
           <Link
             to={`/profile/${attribute.postsId}`}
             className="post__head-user"
+            onClick={() => dispatch(isOwner(false))}
           >
             <img
               className="share__wrapper-img"
