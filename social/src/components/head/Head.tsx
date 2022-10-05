@@ -2,7 +2,6 @@ import { Container } from "@material-ui/core";
 import { FC, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetched } from "../../redux/postReducer";
-import { isOwner } from "../../redux/userReducer";
 import { fetchPosts } from "../../utils/fetchPosts";
 import Feed from "../feed/Feed";
 import FeedShare from "../feedShare/FeedShare";

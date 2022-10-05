@@ -11,7 +11,7 @@ beforeAll(async () => {
 describe("Login", () => {
   test("Give wrong credentials", async () => {
     const data = {
-      email: "georgijl@abv.bg",
+      email: "oho@abv.bg",
       password: "password",
     };
     await request(app).post("/api/user/login").send(data).expect(401);
@@ -19,8 +19,8 @@ describe("Login", () => {
 
   test("Give correct credentials", async () => {
     const data = {
-      email: "georgijl@abv.bg",
-      password: "95042591002017Mm",
+      email: "test@abv.bg",
+      password: "123456789Mm",
     };
 
     await request(app).post("/api/user/login").send(data).expect(200);
@@ -28,11 +28,11 @@ describe("Login", () => {
 
   test("Try to register with existing credentials", async () => {
     const data = {
-      userName: "georgijl",
+      userName: "oho",
       firstName: "Georgi",
       lastName: "Ivanov",
-      email: "georgijl@abv.bg",
-      password: "95042591002017Mm",
+      email: "oho@abv.bg",
+      password: "123456789Mm",
     };
 
     await request(app).post("/api/user/register").send(data).expect(401);
@@ -40,11 +40,11 @@ describe("Login", () => {
 
   test("Try to register with right credentials", async () => {
     const data = {
-      userName: "xaxaxa",
-      firstName: "xaxaxa",
-      lastName: "xaxaxa",
-      email: "xaxaxa@abv.bg",
-      password: "95042591002017Mm",
+      userName: "ehe",
+      firstName: "ehe",
+      lastName: "ehe",
+      email: "ehe@abv.bg",
+      password: "123456789Mm",
     };
 
     await request(app).post("/api/user/register").send(data).expect(200);
@@ -68,17 +68,6 @@ describe("Login", () => {
     await request(app)
       .post("/api/suggested")
       .send({ users: userId })
-      .expect(200);
-  });
-
-  test("Create post", async () => {
-    const description = "This is a test jest post";
-    const image =
-      "https://apod.nasa.gov/apod/image/2110/LucyLaunchB_Kraus_2048.jpg";
-
-    await request(app)
-      .post("/api/post/c5e48954-e7dd-4637-8d50-3c05740e8683")
-      .send({ description: description, image: image })
       .expect(200);
   });
 });

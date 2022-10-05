@@ -10,6 +10,7 @@ import { UserState } from "../interfaces/interfaces";
 import { useClickOutside } from "../../utils/Toggle";
 import Reactions from "../reactions/Reactions";
 import { fetched } from "../../redux/postReducer";
+import { Link } from "react-router-dom";
 
 const Post: FC<Attributes> = ({ attribute }) => {
   const isLoggedIn = useSelector((state: UserState) => state.userInfo.userId);
@@ -64,7 +65,10 @@ const Post: FC<Attributes> = ({ attribute }) => {
     <div className="post" data-testid="post">
       <div className="post__container">
         <div className="post__head">
-          <div className="post__head-user">
+          <Link
+            to={`/profile/${attribute.postsId}`}
+            className="post__head-user"
+          >
             <img
               className="share__wrapper-img"
               src={
@@ -87,7 +91,7 @@ const Post: FC<Attributes> = ({ attribute }) => {
                 {format(attribute ? attribute.createdAt : "")}
               </p>
             </div>
-          </div>
+          </Link>
           {attribute.postsId === isLoggedIn && (
             <MoreVert
               className="post__options-more"
