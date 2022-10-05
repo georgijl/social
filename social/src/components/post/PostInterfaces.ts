@@ -14,7 +14,6 @@ export interface Attributes {
     likes: number;
   };
 }
-
 export interface CommentMapped {
   comment: {
     id: string;

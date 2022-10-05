@@ -60,7 +60,6 @@ describe("<Register />", () => {
     await user.click(registerButton);
     const userErr = screen.getByTestId("login__error");
 
-    console.log(userErr?.textContent, mockSelector.mock.results[0].value);
     expect(`${mockSelector.mock.results[0].value}`).toEqual(
       userErr.textContent
     );

@@ -89,7 +89,11 @@ const Post: FC<Attributes> = ({ attribute }) => {
             </div>
           </div>
           {attribute.postsId === isLoggedIn && (
-            <MoreVert className="post__options-more" onClick={handleToggle} />
+            <MoreVert
+              className="post__options-more"
+              data-testid="post__options-more"
+              onClick={handleToggle}
+            />
           )}
         </div>
         {!isUpdating ? (
@@ -114,7 +118,11 @@ const Post: FC<Attributes> = ({ attribute }) => {
 
         {attribute.postsId === isLoggedIn
           ? openedButton && (
-              <div className="post__dropdown" ref={menuRef}>
+              <div
+                className="post__dropdown"
+                data-testid="post__dropdown"
+                ref={menuRef}
+              >
                 <div className="post__dropdown-wrapper">
                   <p className="post__dropdown-text">Edit post</p>
                   <EditRounded

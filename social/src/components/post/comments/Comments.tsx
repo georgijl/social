@@ -5,6 +5,7 @@ import axios from "axios";
 import { CommentPassed, Comment } from "../PostInterfaces";
 import { UserState } from "../../interfaces/interfaces";
 import { useSelector } from "react-redux";
+import { fetchComments } from "../../../utils/fetchComments";
 
 const Comments: FC<CommentPassed> = ({ openDropdown, attribute }) => {
   const isLoggedIn = useSelector((state: UserState) => state.userInfo.userId);
@@ -13,17 +14,7 @@ const Comments: FC<CommentPassed> = ({ openDropdown, attribute }) => {
   const [commentInfo, setCommentInfo] = useState("");
 
   const getComments = useCallback(async () => {
-    const response = await axios.get(`/comment/${attribute?.id}`);
-
-    setComments(
-      response.data.commentsContent.sort(
-        (p1: { createdAt: Date }, p2: { createdAt: Date }) => {
-          return (
-            new Date(p1.createdAt).valueOf() - new Date(p2.createdAt).valueOf()
-          );
-        }
-      )
-    );
+    setComments(await fetchComments(attribute?.id));
   }, [attribute?.id]);
 
   const handleCreateComment = useCallback(async () => {
@@ -43,7 +34,7 @@ const Comments: FC<CommentPassed> = ({ openDropdown, attribute }) => {
         <input
           className="comments__write"
           type="text"
-          placeholder={"What is your opinion ?"}
+          placeholder={`What is your opinion ${attribute.username} ?`}
           onChange={(e) => {
             e.preventDefault();
             setCommentInfo(e.target.value);
